@@ -4,4 +4,13 @@
     display: grid;
     grid-template-columns: repeat(20, 1fr);
     grid-template-rows: repeat(20, 1fr);
+    gap: 1px;
+}
+
+.board__element {
+    background-color: green;
+}
+
+.snake {
+    background-color: #000;
 }
