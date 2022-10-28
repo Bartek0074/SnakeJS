@@ -52,13 +52,29 @@ const moveSnake = () => {
         if (snakeDirection === 'left') nextX--;
         if (snakeDirection === 'right') nextX++;
 
-        const nextSnakeElement = document.querySelector(`[data-x="${nextX}"][data-y="${nextY}"]`);
-        nextSnakeElement.classList.add('snake');
-        snakeElements.unshift(nextSnakeElement);
-        snakeElements[snakeElements.length - 1].classList.remove('snake');
-        snakeElements.pop();
+        if (isGameOver(nextX, nextY)) {
+            clearInterval(gameInterval);
+            console.log('chuuuj')
+        }
+
+        else {
+            const nextSnakeElement = document.querySelector(`[data-x="${nextX}"][data-y="${nextY}"]`);
+            nextSnakeElement.classList.add('snake');
+            snakeElements.unshift(nextSnakeElement);
+            snakeElements[snakeElements.length - 1].classList.remove('snake');
+            snakeElements.pop();
+        }
 
     }, 200)
+}
+
+const isGameOver = (x, y) => {
+    // checking if snake hit wall or himself
+    if  (x < 1 || x > 20 || y < 1 || y > 20 ||
+        snakeElements.some(({dataset}) => dataset.x == x && dataset.y == y )) {
+        return true;
+    }
+    else return false;
 }
 
 createBoard();
