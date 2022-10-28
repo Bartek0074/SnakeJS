@@ -41,6 +41,7 @@ const initSnake = () => {
 
     moveSnake();
     controlSnake();
+    createFood();
 }
 
 const moveSnake = () => {
@@ -62,9 +63,17 @@ const moveSnake = () => {
             nextSnakeElement.classList.add('snake');
             snakeElements.unshift(nextSnakeElement);
             snakeElements[snakeElements.length - 1].classList.remove('snake');
-            snakeElements.pop();
-        }
 
+            if (nextSnakeElement !== food) {
+                snakeElements.pop();
+            }
+            else {
+                food.classList.remove('food');
+                createFood();
+            }
+
+        }
+        console.log(snakeElements)
     }, 200)
 }
 
@@ -90,6 +99,21 @@ const controlSnake = () => {
 
         console.log(snakeDirection)
     })
+}
+
+const createFood = () => {
+    let xPosition;
+    let yPosition;
+
+    do {
+        xPosition = Math.floor(Math.random() * 20) + 1
+        yPosition = Math.floor(Math.random() * 20) + 1
+    } 
+    while (snakeElements.some(({dataset}) => dataset.x == xPosition && dataset.y == yPosition))
+
+    food = document.querySelector(`[data-x="${xPosition}"][data-y="${yPosition}"]`);
+    food.classList.add('food');
+
 }
 
 createBoard();
