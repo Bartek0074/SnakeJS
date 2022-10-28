@@ -40,6 +40,7 @@ const initSnake = () => {
     }
 
     moveSnake();
+    controlSnake();
 }
 
 const moveSnake = () => {
@@ -54,7 +55,6 @@ const moveSnake = () => {
 
         if (isGameOver(nextX, nextY)) {
             clearInterval(gameInterval);
-            console.log('chuuuj')
         }
 
         else {
@@ -75,6 +75,21 @@ const isGameOver = (x, y) => {
         return true;
     }
     else return false;
+}
+
+const controlSnake = () => {
+    window.addEventListener('keydown', (e) => {
+        // preventing page from scroll
+        e.preventDefault()
+
+        // changing direction for all cases
+        if (e.code === 'ArrowLeft' && snakeDirection !== "right") snakeDirection = 'left';
+        if (e.code === 'ArrowRight' && snakeDirection !== "left") snakeDirection = 'right';
+        if (e.code === 'ArrowUp' && snakeDirection !== "down") snakeDirection = 'up';
+        if (e.code === 'ArrowDown' && snakeDirection !== "up") snakeDirection = 'down';
+
+        console.log(snakeDirection)
+    })
 }
 
 createBoard();
