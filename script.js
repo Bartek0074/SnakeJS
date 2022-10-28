@@ -33,8 +33,7 @@ const initSnake = () => {
         if (snakeDirection === 'left') xPosition--;
         if (snakeDirection === 'right') xPosition++;
 
-        const snakeElement = document.querySelector(`[data-x="${xPosition}"][data-y="${yPosition}"]`);
-        console.log(snakeElement);
+        const snakeElement = getBoardElement(xPosition, yPosition);
         snakeElement.classList.add('snake')
         snakeElements.unshift(snakeElement);
     }
@@ -59,7 +58,7 @@ const moveSnake = () => {
         }
 
         else {
-            const nextSnakeElement = document.querySelector(`[data-x="${nextX}"][data-y="${nextY}"]`);
+            const nextSnakeElement = getBoardElement(nextX, nextY);
             nextSnakeElement.classList.add('snake');
             snakeElements.unshift(nextSnakeElement);
             snakeElements[snakeElements.length - 1].classList.remove('snake');
@@ -73,7 +72,6 @@ const moveSnake = () => {
             }
 
         }
-        console.log(snakeElements)
     }, 200)
 }
 
@@ -96,8 +94,6 @@ const controlSnake = () => {
         if (e.code === 'ArrowRight' && snakeDirection !== "left") snakeDirection = 'right';
         if (e.code === 'ArrowUp' && snakeDirection !== "down") snakeDirection = 'up';
         if (e.code === 'ArrowDown' && snakeDirection !== "up") snakeDirection = 'down';
-
-        console.log(snakeDirection)
     })
 }
 
@@ -111,9 +107,12 @@ const createFood = () => {
     } 
     while (snakeElements.some(({dataset}) => dataset.x == xPosition && dataset.y == yPosition))
 
-    food = document.querySelector(`[data-x="${xPosition}"][data-y="${yPosition}"]`);
+    food = getBoardElement(xPosition, yPosition);
     food.classList.add('food');
+}
 
+const getBoardElement = (xPosition, yPosition) => {
+    return document.querySelector(`[data-x="${xPosition}"][data-y="${yPosition}"]`);
 }
 
 createBoard();
