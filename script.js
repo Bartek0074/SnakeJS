@@ -26,11 +26,10 @@ const createBoard = () => {
 const initSnake = () => {
     let xPosition = Math.floor(Math.random() * 12) + 5;
     let yPosition = Math.floor(Math.random() * 12) + 5;
-    console.log(yPosition, xPosition, snakeDirection)
 
     for (let i = 0; i < 3; i++){
-        if (snakeDirection === 'up') yPosition++;
-        if (snakeDirection === 'down') yPosition--;
+        if (snakeDirection === 'up') yPosition--;
+        if (snakeDirection === 'down') yPosition++;
         if (snakeDirection === 'left') xPosition--;
         if (snakeDirection === 'right') xPosition++;
 
@@ -39,6 +38,27 @@ const initSnake = () => {
         snakeElement.classList.add('snake')
         snakeElements.unshift(snakeElement);
     }
+
+    moveSnake();
+}
+
+const moveSnake = () => {
+    let gameInterval = setInterval(() => {
+        let nextX = snakeElements[0]["dataset"]["x"];
+        let nextY = snakeElements[0]["dataset"]["y"];
+
+        if (snakeDirection === 'up') nextY--;
+        if (snakeDirection === 'down') nextY++;
+        if (snakeDirection === 'left') nextX--;
+        if (snakeDirection === 'right') nextX++;
+
+        const nextSnakeElement = document.querySelector(`[data-x="${nextX}"][data-y="${nextY}"]`);
+        nextSnakeElement.classList.add('snake');
+        snakeElements.unshift(nextSnakeElement);
+        snakeElements[snakeElements.length - 1].classList.remove('snake');
+        snakeElements.pop();
+
+    }, 200)
 }
 
 createBoard();
