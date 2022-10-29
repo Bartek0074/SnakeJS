@@ -75,6 +75,7 @@ const moveSnake = () => {
             }
 
         }
+        actualizeSnakeHead();
     }, 200)
 }
 
@@ -119,9 +120,38 @@ const setScore = () => {
     scoreText.textContent = `SCORE: ${score}`;
 }
 
+const initSnakeHead = () => {
+    if (snakeDirection === 'up') {
+        snakeElements[0].classList.add('snake__head--vertical');
+        snakeElements[0].innerHTML = '<span class="snake__tongue snake__tongue--up"></span>'
+    }
+    if (snakeDirection === 'down') {
+        snakeElements[0].classList.add('snake__head--vertical');
+        snakeElements[0].innerHTML = '<span class="snake__tongue snake__tongue--down"></span>'
+    }
+    if (snakeDirection === 'left') {
+        snakeElements[0].classList.add('snake__head--horizontal');
+        snakeElements[0].innerHTML = '<span class="snake__tongue snake__tongue--left"></span>'
+    }
+    if (snakeDirection === 'right') {
+        snakeElements[0].classList.add('snake__head--horizontal');
+        snakeElements[0].innerHTML = '<span class="snake__tongue snake__tongue--right"></span>'
+    }
+}
+
+const actualizeSnakeHead = () => {
+    snakeElements.forEach(snakeElement => {
+        snakeElement.classList.remove('snake__head--vertical');
+        snakeElement.classList.remove('snake__head--horizontal');
+        snakeElement.innerHTML = '';
+    })
+    initSnakeHead();
+}
+
 const getBoardElement = (xPosition, yPosition) => {
     return document.querySelector(`[data-x="${xPosition}"][data-y="${yPosition}"]`);
 }
 
 createBoard();
 initSnake();
+initSnakeHead();

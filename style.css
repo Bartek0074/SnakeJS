@@ -50,6 +50,91 @@ body {
     border-radius: 2px;
 }
 
+.snake__head--horizontal,
+.snake__head--vertical {
+    position: relative;
+}
+
+.snake__head--horizontal::before,
+.snake__head--horizontal::after,
+.snake__head--vertical::before,
+.snake__head--vertical::after {
+    position: absolute;
+    content: '';
+    width: 4px;
+    height: 4px;
+    background-color: #222;
+    border: 3px solid #eee;
+    border-radius: 50%;
+}
+
+.snake__head--horizontal::before {
+    top: -3px;
+    left: 3px;
+}
+
+.snake__head--horizontal::after {
+    bottom: -3px;
+    left: 3px;
+}
+
+.snake__head--vertical::before {
+    top: 3px;
+    left: -3px;
+}
+
+.snake__head--vertical::after {
+    top: 3px;
+    right: -3px;
+}
+
+.snake__tongue {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background-color: rgb(219, 58, 18);
+}
+
+.snake__tongue--right,
+.snake__tongue--left {
+    width: 8px;
+    height: 5px;
+    bottom: 50%;
+    transform: translateY(50%);
+}
+
+.snake__tongue--right {
+    right: -6px;
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+}
+
+.snake__tongue--left {
+    left: -6px;
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+}
+
+.snake__tongue--up,
+.snake__tongue--down {
+    width: 5px;
+    height: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.snake__tongue--up {
+    top: -6px;
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+}
+
+.snake__tongue--down {
+    bottom: -6px;
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+}
+
 @media (min-width: 576px) {
     .board {
         width: 400px;
