@@ -1,20 +1,58 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #d8d8d8;
+    font-family: 'Press Start 2P', cursive;
+    height: 100vh;
+}
+
+.wrapper {
+    margin: 0 auto;
+    width: 98%;
+    max-width: 1200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.score {
+    margin: 1em;
+}
+
 .board {
-    width: 400px;
-    height: 400px;
+    width: 98vw;
+    height: 98vw;
     display: grid;
+    border: 15px solid black;
+    background-color: rgb(6, 54, 12);
+    border-radius: 10px;
     grid-template-columns: repeat(20, 1fr);
     grid-template-rows: repeat(20, 1fr);
     gap: 1px;
 }
 
 .board__element {
-    background-color: green;
+    background-color: rgb(13, 121, 28);
 }
 
 .food {
-    background-color: red;
+    background-color: rgb(217, 128, 20);
+    border-radius: 2px;
 }
 
 .snake {
-    background-color: #000;
+    background-color: rgb(20, 51, 205);
+    border-radius: 2px;
+}
+
+@media (min-width: 576px) {
+    .board {
+        width: 400px;
+        height: 400px;
+    }
 }

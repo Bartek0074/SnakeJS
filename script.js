@@ -1,8 +1,10 @@
-const board = document.querySelector('.board')
+const board = document.querySelector('.board');
+const scoreText = document.querySelector('.score__text');
 const snakeElements = [];
 let food;
 let gameOver = false;
 let snakeDirection = getDirection();
+let score = 0;
 
 function getDirection() {
     const directions = ['up', 'right', 'down', 'left'];
@@ -69,6 +71,7 @@ const moveSnake = () => {
             else {
                 food.classList.remove('food');
                 createFood();
+                setScore();
             }
 
         }
@@ -109,6 +112,11 @@ const createFood = () => {
 
     food = getBoardElement(xPosition, yPosition);
     food.classList.add('food');
+}
+
+const setScore = () => {
+    score += 10;
+    scoreText.textContent = `SCORE: ${score}`;
 }
 
 const getBoardElement = (xPosition, yPosition) => {
