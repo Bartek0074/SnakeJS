@@ -5,6 +5,7 @@
 }
 
 body {
+    position: relative;
     background-color: #d8d8d8;
     font-family: 'Press Start 2P', cursive;
     height: 100vh;
@@ -13,6 +14,7 @@ body {
 .wrapper {
     margin: 0 auto;
     width: 98%;
+    height: 90%;
     max-width: 1200px;
     display: flex;
     justify-content: center;
@@ -133,6 +135,45 @@ body {
     bottom: -6px;
     border-top-left-radius: 2px;
     border-bottom-left-radius: 2px;
+}
+
+.game-info {
+    position: absolute;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #000000aa;
+}
+
+.game-info--on {
+    display: flex;
+}
+
+.game-info .game-info__text {
+    font-size: 2.4rem;
+    line-height: 3.2rem;
+    text-align: center;
+    color: #eee;
+    animation: 2s pulse infinite;
+}
+
+
+@keyframes pulse {
+    0% {
+        color: #eee;
+    }
+
+    50% {
+        color: #639;
+    }
+
+    100% {
+        color: #eee;
+    }
 }
 
 @media (min-width: 576px) {

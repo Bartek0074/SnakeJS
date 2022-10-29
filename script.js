@@ -1,5 +1,7 @@
 const board = document.querySelector('.board');
 const scoreText = document.querySelector('.score__text');
+const gameInfo = document.querySelector('.game-info');
+const gameInfoText = document.querySelector('.game-info__text');
 let snakeElements = [];
 let food;
 let gameOver = false;
@@ -57,6 +59,8 @@ const moveSnake = () => {
 
         if (isGameOver(nextX, nextY)) {
             clearInterval(gameInterval);
+            gameInfo.classList.add('game-info--on');
+            gameInfoText.innerHTML = `GAME OVER!!!<br>YOUR SCORE: ${score}<br>PRESS ANY KEY TO CONTINUE`;
         }
 
         else {
@@ -153,7 +157,6 @@ const getBoardElement = (xPosition, yPosition) => {
 }
 
 const clearBoard = () => {
-    console.log(board.childNodes);
     // removing classes from every board element
     board.childNodes.forEach(boardElement => {
         boardElement.classList.remove('snake');
@@ -171,9 +174,18 @@ const clearBoard = () => {
 }
 
 const startGame = () => {
-    clearBoard();
-    initSnake();
-    initSnakeHead();
+    if (gameInfo.classList.contains('game-info--on')){
+        clearBoard();
+        initSnake();
+        initSnakeHead();
+        gameInfo.classList.remove('game-info--on');
+    }
+    else {
+        console.log('crash')
+    }
 }
 
 createBoard();
+
+window.addEventListener('keydown', () => startGame());
+window.addEventListener('click', () => startGame());
