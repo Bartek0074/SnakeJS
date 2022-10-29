@@ -1,6 +1,6 @@
 const board = document.querySelector('.board');
 const scoreText = document.querySelector('.score__text');
-const snakeElements = [];
+let snakeElements = [];
 let food;
 let gameOver = false;
 let snakeDirection = getDirection();
@@ -152,6 +152,28 @@ const getBoardElement = (xPosition, yPosition) => {
     return document.querySelector(`[data-x="${xPosition}"][data-y="${yPosition}"]`);
 }
 
+const clearBoard = () => {
+    console.log(board.childNodes);
+    // removing classes from every board element
+    board.childNodes.forEach(boardElement => {
+        boardElement.classList.remove('snake');
+        boardElement.classList.remove('food');
+        boardElement.classList.remove('snake__head--vertical');
+        boardElement.classList.remove('snake__head--horizontal');
+        boardElement.innerHTML = '';
+    })
+
+    food = null;
+    snakeElements = [];
+    snakeDirection = getDirection();
+    score = 0;
+    scoreText.textContent = `SCORE: ${score}`;
+}
+
+const startGame = () => {
+    clearBoard();
+    initSnake();
+    initSnakeHead();
+}
+
 createBoard();
-initSnake();
-initSnakeHead();
