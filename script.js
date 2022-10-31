@@ -3,6 +3,10 @@ const scoreText = document.querySelector('.score__score-text');
 const highestScoreText = document.querySelector('.score__highest-score-text');
 const gameInfo = document.querySelector('.game-info');
 const gameInfoText = document.querySelector('.game-info__text');
+const controlerUp = document.querySelector('.controler--up');
+const controlerRight = document.querySelector('.controler--right');
+const controlerDown = document.querySelector('.controler--down');
+const controlerLeft = document.querySelector('.controler--left');
 let snakeElements = [];
 let food;
 let gameOver = false;
@@ -105,6 +109,22 @@ const controlSnake = () => {
         if (e.code === 'ArrowRight' && snakeDirection !== "left") snakeDirection = 'right';
         if (e.code === 'ArrowUp' && snakeDirection !== "down") snakeDirection = 'up';
         if (e.code === 'ArrowDown' && snakeDirection !== "up") snakeDirection = 'down';
+    })
+    
+    controlerUp.addEventListener('click', () => {
+        if (snakeDirection !== "down") snakeDirection = 'up';
+    })
+
+    controlerRight.addEventListener('click', () => {
+        if (snakeDirection !== "left") snakeDirection = 'right';
+    })
+
+    controlerDown.addEventListener('click', () => {
+        if (snakeDirection !== "up") snakeDirection = 'down';
+    })
+
+    controlerLeft.addEventListener('click', () => {
+        if (snakeDirection !== "right") snakeDirection = 'left';
     })
 }
 
