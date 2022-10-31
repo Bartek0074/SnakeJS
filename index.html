@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SnakeJS</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/44f399a034.js" crossorigin="anonymous"></script> 
 </head>
 <body>
     <div class="wrapper">
@@ -15,8 +16,16 @@
             <p class="score__score-text">SCORE: 0</p>
         </div>
         <div class="board"></div>
+        <div class="mobile-controlers">
+            <div class="controlers-grid">
+                <button class="controler controler--up"><i class="fa-solid fa-square-caret-up fa-5x"></i></button>
+                <button class="controler controler--left"><i class="fa-solid fa-square-caret-left fa-5x"></i></button>
+                <button class="controler controler--down"><i class="fa-solid fa-square-caret-down fa-5x"></i></button>
+                <button class="controler controler--right"><i class="fa-solid fa-square-caret-right fa-5x"></i></button>
+            </div>
+        </div>
     </div>
-    <div class="game-info game-info--on">
+    <div class="game-info game-info">
         <p class="game-info__text">PRESS ANY KEY TO CONTINUE</p>
     </div>
     <script src="script.js"></script>
