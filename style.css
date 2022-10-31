@@ -23,7 +23,16 @@ body {
 }
 
 .score {
+    width: 98vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
     margin: 1em;
+}
+
+.score__score-text,
+.score__highest-score-text {
+    font-size: 12px;
 }
 
 .board {
@@ -180,5 +189,9 @@ body {
     .board {
         width: 400px;
         height: 400px;
+    }
+
+    .score {
+        width: 400px;
     }
 }

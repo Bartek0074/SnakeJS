@@ -1,5 +1,6 @@
 const board = document.querySelector('.board');
-const scoreText = document.querySelector('.score__text');
+const scoreText = document.querySelector('.score__score-text');
+const highestScoreText = document.querySelector('.score__highest-score-text');
 const gameInfo = document.querySelector('.game-info');
 const gameInfoText = document.querySelector('.game-info__text');
 let snakeElements = [];
@@ -7,6 +8,7 @@ let food;
 let gameOver = false;
 let snakeDirection = getDirection();
 let score = 0;
+let highestScore = 0;
 
 function getDirection() {
     const directions = ['up', 'right', 'down', 'left'];
@@ -59,6 +61,7 @@ const moveSnake = () => {
 
         if (isGameOver(nextX, nextY)) {
             clearInterval(gameInterval);
+            setHighestScore();
             gameInfo.classList.add('game-info--on');
             gameInfoText.innerHTML = `GAME OVER!!!<br>YOUR SCORE: ${score}<br>PRESS ANY KEY TO CONTINUE`;
         }
@@ -122,6 +125,13 @@ const createFood = () => {
 const setScore = () => {
     score += 10;
     scoreText.textContent = `SCORE: ${score}`;
+}
+
+const setHighestScore = () => {
+    if (highestScore < score) {
+        highestScore = score;
+        highestScoreText.textContent = `HIGHEST SCORE: ${highestScore}`;
+    }
 }
 
 const initSnakeHead = () => {
